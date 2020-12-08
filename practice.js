@@ -27,7 +27,7 @@ Inside this loop, change the value of each property to 0
 
 function objectLooper(number) {
     for (let key in number) {
-        // Code here
+        number[key] *= 0;
     }
     return number;
 };
@@ -51,7 +51,9 @@ If a value is greater than 3,000,000 set it to 0
 
 function stateLooper(obj) {
 	for (let key in obj) {
-		// Code here
+		if(obj[key] > 3000000){
+            obj[key] = 0;
+        }
 	}
 	return obj;
 };
@@ -66,7 +68,11 @@ Once all falsy values and their properties are removed, return the object
 */
 
 function cleanUser(obj) {
-    // Code here
+    for(let key in obj){
+        if(!obj[key]){
+            delete obj[key];
+        }
+    } return obj;
 };
 
 
@@ -77,7 +83,11 @@ Create a function called maxedOut that takes a user object and loops over that o
 Return the updated user object
 */
 
-// Code here
+function maxedOut(obj){
+    for(let key in obj){
+        obj[key] = 'max';
+    } return obj;
+}
 
 
 
@@ -115,7 +125,7 @@ Above you are given the object animalCount
 Destructure this object so that you have 3 distinct variables with values matching those of the properties from animalCount
 */
 
-// Code here
+let {cats, dogs, mice} = animalCount;
 
 
 
@@ -135,7 +145,13 @@ These variables should be: students, mentors and instructors
 Set the value of students to be 24, mentors to be 3, and instructors to be 5
 */
 
-// Code here
+let obj = {
+    students: 24,
+    mentors: 3,
+    instructors: 5
+};
+
+let {students, mentors, instructors} = obj;
 
 
 
@@ -147,7 +163,13 @@ Give these properties the value true if you speak the language or false if you d
 Use destructuring to assign the values of these properties to new variables
 */
 
-// Code here
+const languages = {
+    french: false,
+    english: true,
+    spanish: false,
+}
+
+let {french, english, spanish} = languages;
 
 
 
@@ -182,8 +204,10 @@ In the function, use object destructuring to assign the values of these properti
 Subtract num2 from num1 and return the result
 */
 
-// Code here
-
+function subtraction(object){
+    let {num1, num2} = object;
+    return num1 - num2;
+}
 
 
 ////////// PROBLEM 9 //////////
@@ -195,8 +219,10 @@ The values of these properties will be a number representing the count of that a
 Using object destructuring, return the total sum of the counts of these animals
 */
 
-// Code here
-
+function zooAnimals(obj){
+    let {lion, tiger, bear} = obj;
+    return lion + tiger + bear;
+}
 
 
 ////////// PROBLEM 10 //////////
@@ -224,7 +250,9 @@ Return from this function a greeting sentence that should say "Hello, <title> <n
 Title and name in this sentence should be replaced with the values of the destructured object variables 
 */
 
-// Code here
+function greeting({name, title}){
+    return `Hello, ${title} ${name}!`;
+}
 
 
 
@@ -237,7 +265,13 @@ One of these properties will be truthy and the other will be falsy
 Return the value that is truthy
 */
 
-// Code here
+function truthyFalsy({number, string}){
+    if(!number){
+        return string;
+    } else {
+        return number;
+    }
+}
 
 
 
@@ -251,7 +285,7 @@ You should not use the ES5 function declaration or function expression syntax in
 Your function should also be contained within a single line
 */
 
-// Code here
+const isGreaterThanTwenty = num => (num > 20) ? true : false;
 
 
 
@@ -264,7 +298,7 @@ You should not use the ES5 function declaration or function expression syntax in
 Your function should also be contained within a single line
 */
 
-// Code here
+const seven = () => 7;
 
 
 
@@ -292,7 +326,9 @@ function double(num) {
 };
 */
 
-// Code here
+const add = (num1, num2) => num1 + num2;
+const subtract = (num1, num2) => num1 - num2;
+const double = num => num * 2;
 
 
 
@@ -305,7 +341,7 @@ The function should return the product of the two parameters
 You should not use the ES5 function declaration or function expression syntax in your final solution
 */
 
-// Code here
+const multiply = (num1, num2) => num1 * num2;
 
 
 
@@ -318,7 +354,7 @@ The function should return a single concatenated (joined) str of str1 and str2
 You should not use the ES5 function declaration or function expression syntax in your final solution
 */
 
-// Code here
+const concatenate = (str1, str2) => str1 + str2;
 
 
 
@@ -332,7 +368,14 @@ The values of each property should correspond to its respective parameter
 You should not use the ES5 function declaration or function expression syntax in your final solution
 */
 
-// Code here
+const gemInfo = (gemType, gemSize, gemWeight) => {
+    let obj = {}
+    obj.gemType = gemType
+    obj.gemSize = gemSize
+    obj.gemWeight = gemWeight
+    return obj;
+}
+
 
 
 
@@ -357,10 +400,18 @@ let jobs = [
 
 // Do not edit the code above.
 
+let identifier = () => jobs.filter(element => element.programmer !== undefined)[0];
 
-// Code here
+// function identifier(){
+//         let obj = jobs.filter(element => 
+//         element.programmer !== undefined
+//     ); return obj[0];
+// } 
 
 
+// const sTurtles = turtles.filter(function(element){
+//     return element.startsWith('s') || element.startsWith('n')
+//   })
 
 ////////// PROBLEM 19 //////////
 
@@ -373,7 +424,12 @@ You should not use the ES5 function declaration or function expression syntax in
 You should not use a for loop, but should use the filter method instead
 */
 
-// Code here
+
+const evens = arr => arr.filter(element => element % 2 === 0);
+// function evens(arr){
+//     let evenNumbers = arr.filter(element => element % 2 === 0);
+//     return evenNumbers;
+// }
 
 
 
@@ -390,7 +446,13 @@ You should not use a for loop, but should use the filter method instead
 
 */
 
-// Code here
+let startWithLetterA = arr => arr.filter(element => element.startsWith('a') || element.startsWith('A'));
+
+// function startWithLetterA (arr){
+//     let newArr = arr.filter(function(element){
+//         return element.startsWith('a') || element.startsWith('A')
+//     }); return newArr;
+// };
 
 
 
@@ -404,7 +466,8 @@ Make sure to use arrow functions combined with the map method
 */
 
 const formalGreeting = names => {
-    // Code here
+    let greeting = names.map(element => `Hello, ${element}`);
+    return greeting;
 }
 
 
@@ -419,5 +482,6 @@ Make sure to use arrow functions combined with the reduce method
 */
 
 const productOfArray = numbers => {
-    // Code here
+    let answer = numbers.reduce((acc, curr) => acc * curr);
+    return answer;
 }
